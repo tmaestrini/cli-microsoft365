@@ -12,6 +12,7 @@ interface CommandArgs {
 }
 
 interface Options extends GlobalOptions {
+  AllowWebPropertyBagUpdateWhenDenyAddAndCustomizePagesIsEnabled?: boolean;
   MinCompatibilityLevel: number;
   MaxCompatibilityLevel: number;
   ExternalServicesEnabled?: boolean;
@@ -102,6 +103,7 @@ interface Options extends GlobalOptions {
 
 class SpoTenantSettingsSetCommand extends SpoCommand {
   private static booleanOptions: string[] = [
+    'AllowWebPropertyBagUpdateWhenDenyAddAndCustomizePagesIsEnabled',
     'ExternalServicesEnabled',
     'DisplayStartASiteOption',
     'ShowEveryoneClaim',
@@ -225,6 +227,10 @@ class SpoTenantSettingsSetCommand extends SpoCommand {
 
   #initOptions(): void {
     this.options.unshift(
+      {
+        option: '--AllowWebPropertyBagUpdateWhenDenyAddAndCustomizePagesIsEnabled [AllowWebPropertyBagUpdateWhenDenyAddAndCustomizePagesIsEnabled]',
+        autocomplete: ['true', 'false']
+      },
       {
         option: '--MinCompatibilityLevel [MinCompatibilityLevel]'
       },
